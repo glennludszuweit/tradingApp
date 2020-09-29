@@ -14,34 +14,32 @@ lib.setLocalStorageBalance();
 
 // Buy Stocks
 buyStocks.addEventListener('click', (e) => {
-  e.preventDefault();
-  quantity = quantityInput.value;
+    e.preventDefault();
+    quantity = quantityInput.value;
 
-  loadTotalStocks();
-
-  //set stocks
-  lib.setLocalStorageStocks();
-  // calculate cash
-  lib.setLocalStorageCash();
-  displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
-  //calculate balance
-  lib.setLocalStorageBalance();
-  displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+    //set stocks
+    lib.setLocalStorageStocks();
+    // calculate cash
+    lib.setLocalStorageCash();
+    displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
+    //calculate balance
+    lib.setLocalStorageBalance();
+    displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+    location.reload();
 });
 
 //Sell Stocks
 sellStocks.addEventListener('click', (e) => {
-  e.preventDefault();
-  quantity = -quantityInput.value;
+    e.preventDefault();
+    quantity = -quantityInput.value;
 
-  loadTotalStocks();
-
-  //set stocks
-  lib.setLocalStorageStocks();
-  // calculate cash
-  lib.setLocalStorageCash();
-  displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
-  //calculate balance
-  lib.setLocalStorageBalance();
-  displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+    //set stocks
+    lib.setLocalStorageStocks();
+    // calculate cash
+    lib.setLocalStorageCash();
+    displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
+    //calculate balance
+    lib.setLocalStorageBalance();
+    displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+    location.reload();
 });

@@ -9,51 +9,51 @@ let quantity;
 let price;
 
 function loadStartingMoney() {
-  if (lib.GET('cash') === null && lib.GET('balance') === null) {
-    lib.SET('cash', '1000000');
-    lib.SET('balance', '1000000');
-  }
-  displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
-  displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+    if (lib.GET('cash') === null && lib.GET('balance') === null) {
+        lib.SET('cash', '1000000');
+        lib.SET('balance', '1000000');
+    }
+    displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
+    displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
 }
 
 async function loadStockInfo() {
-  const myStock = new MyStocks(symbol, dataResolution, quantity, price);
-  await myStock.companyStockCandles();
-  await myStock.companyStockQoutes();
-  await myStock.companyInfo();
+    const myStock = new MyStocks(symbol, dataResolution, quantity, price);
+    await myStock.companyStockCandles();
+    await myStock.companyStockQoutes();
+    await myStock.companyInfo();
 }
 
 export function displayMyStocks() {
-  displayPortfolioStocks.addEventListener('click', async (e) => {
-    e.preventDefault();
-    lib.removeData();
+    displayPortfolioStocks.addEventListener('click', async (e) => {
+        e.preventDefault();
+        lib.removeData();
 
-    if (e.target.className === 'company-overview' || e.target !== 0) {
-      //change color in delegation
-      if (e.target.className !== 'company-overview') {
-        return;
-      }
-      if (selectedCompany) {
-        selectedCompany.classList.remove('highlight');
-      }
-      selectedCompany = e.target;
-      selectedCompany.classList.add('highlight');
-    }
-    let item = e.target.innerText
-      .replace(/(\r\n|\n|\r)/gm, ' ')
-      .split(' ') // ["aapl", " ", " apple", " ", "inc",  "$87263948"]
-      .filter(Boolean);
+        if (e.target.className === 'company-overview' || e.target !== 0) {
+            //change color in delegation
+            if (e.target.className !== 'company-overview') {
+                return;
+            }
+            if (selectedCompany) {
+                selectedCompany.classList.remove('highlight');
+            }
+            selectedCompany = e.target;
+            selectedCompany.classList.add('highlight');
+        }
+        let item = e.target.innerText
+            .replace(/(\r\n|\n|\r)/gm, ' ')
+            .split(' ') // ["aapl", " ", " apple", " ", "inc",  "$87263948"]
+            .filter(Boolean);
 
-    [symbol, , quantity, price] = item;
+        [symbol, , quantity, price] = item;
 
-    await loadStockInfo();
-    displayMyStockData();
+        await loadStockInfo();
+        displayMyStockData();
 
-    chart(timesStamps, highPrices, lowPrices);
+        chart(timesStamps, highPrices, lowPrices);
 
-    sellStocks.style.display = '';
-  });
+        sellStocks.style.display = '';
+    });
 }
 
 // export async function loadPortfolioStocks() {
@@ -74,47 +74,49 @@ export function displayMyStocks() {
 // }
 
 export async function loadTotalStocks() {
-  loadStartingMoney();
-  let list = {};
-  stocks.forEach((stock) => {
-    if (!list[stock.symbol]) {
-      list[stock.symbol] = new MyStocks(
-        stock.symbol,
-        stock.resolution,
-        stock.quantity,
-        stock.price,
-        stock.value
-      );
-    } else {
-      list[stock.symbol].quantity += stock.quantity;
-      list[stock.symbol].value += stock.value;
-    }
-  });
+    loadStartingMoney();
+    let list = {};
+    stocks.forEach((stock) => {
+        if (!list[stock.symbol]) {
+            list[stock.symbol] = new MyStocks(
+                stock.symbol,
+                stock.resolution,
+                stock.quantity,
+                stock.price,
+                stock.value
+            );
+        } else {
+            list[stock.symbol].quantity += stock.quantity;
+            list[stock.symbol].value += stock.value;
+        }
+    });
 
-  let output = Object.values(list).map((stock) => {
-    if (stock.quantity <= 0) {
-      return;
-    } else {
-      return `
-      <div class="company-overview">
-        <div class="company-name">
-          <h3 class="description">${stock.symbol}</h3>
-          <p><small class="company-shares">Shares ${stock.quantity}</small></p>
-        </div>
-        <div class="mini-graph"></div>
-        <div class="price">$${stock.value.toFixed(2)}</div>
-      </div>
-    `;
-    }
-  });
+    let output = Object.values(list).map((stock) => {
+        if (stock.quantity <= 0) {
+            return;
+        } else {
+            return `
+              <div class="company-overview">
+                <div class="company-name">
+                  <h3 class="description">${stock.symbol}</h3>
+                  <p><small class="company-shares">Shares ${
+                      stock.quantity
+                  }</small></p>
+                </div>
+                <div class="mini-graph"></div>
+                <div class="price">$${
+                    stock.price.toFixed(2) * stock.quantity
+                }</div>
+              </div>
+            `;
+        }
+    });
 
-  displayPortfolioStocks.innerHTML = output.join('');
+    displayPortfolioStocks.innerHTML = output.join('');
 }
 
 function displayMyStockData() {
-  calculateBalance = currentPrice[0].toFixed(2) * quantity;
-
-  basicInfo.innerHTML = `
+    basicInfo.innerHTML = `
   <div class="search-stock-info">
     <div>
       <small>Current Price</small>
@@ -127,10 +129,10 @@ function displayMyStockData() {
           <div>
             <small
               ><span class="high-price">$${highPrices[
-                highPrices.length - 1
+                  highPrices.length - 1
               ].toFixed(2)} (High) </span> |
               <span class="low-price">$${lowPrices[
-                lowPrices.length - 1
+                  lowPrices.length - 1
               ].toFixed(2)} (Low) </span
             ></small>
           </div>
@@ -147,7 +149,7 @@ function displayMyStockData() {
     <div class="price-details_comp-name">
       <small>Stock Value</small>
       <div class="price-big" id="stock-value" style="color: #46cf9a">$${
-        currentPrice[0].toFixed(2) * quantity
+          currentPrice[0].toFixed(2) * quantity
       }</div>
       <div class="price-details">
         <div class="price-details_shares">

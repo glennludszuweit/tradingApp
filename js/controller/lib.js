@@ -1,56 +1,82 @@
+import MyStocks from '../model/MyStocks.js';
+
 export function removeData() {
-  timesStamps = [];
-  currentPrice = [];
-  highPrices = [];
-  lowPrices = [];
-  companyName = [];
-  companySymbol = [];
+    timesStamps = [];
+    currentPrice = [];
+    highPrices = [];
+    lowPrices = [];
+    companyName = [];
+    companySymbol = [];
 }
 
 export function SET(key, value) {
-  return localStorage.setItem(key, JSON.stringify(value));
+    return localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function GET(key) {
-  return JSON.parse(localStorage.getItem(key));
+    return JSON.parse(localStorage.getItem(key));
 }
 
 export function setLocalStorageStocks() {
-  let obj = {};
+    let obj = {};
 
-  if (GET('stocks') === null) {
-    localStorageStocks = [];
-  } else {
-    localStorageStocks = GET('stocks');
-  }
+    if (GET('stocks') === null) {
+        localStorageStocks = [];
+    } else {
+        localStorageStocks = GET('stocks');
+    }
 
-  obj.symbol = companySymbol[0];
-  obj.quantity = +quantity;
+    obj.symbol = companySymbol[0];
+    obj.quantity = +quantity;
 
-  obj.price = currentPrice[0];
-  obj.value = quantity * currentPrice[0];
+    obj.price = currentPrice[0];
+    obj.value = obj.quantity * obj.price;
 
-  LSValue = obj.value;
-  localStorageStocks.push(obj);
-  SET('stocks', localStorageStocks);
+    LSValue = obj.value;
+    localStorageStocks.push(obj);
+    SET('stocks', localStorageStocks);
 }
 
 export function setLocalStorageCash() {
-  if (GET('cash') === null) {
-    cash = SET('cash', 1000000);
-  } else {
-    cash = GET('cash') - LSValue;
-  }
+    if (GET('cash') === null) {
+        SET('cash', (cash = 1000000));
+    } else {
+        cash = GET('cash') - LSValue;
+    }
 
-  SET('cash', cash);
+    SET('cash', cash);
 }
 
-export function setLocalStorageBalance() {
-  if (GET('balance') === null) {
-    balance = SET('balance', 1000000);
-  } else {
-    balance = GET('cash') + currentPrice[0] * stock.quantity;
-  }
+export async function setLocalStorageBalance() {
+    if (GET('balance') === null) {
+        SET('balance', (balance = 1000000));
+    } else {
+        let x = GET('stocks').map(async (stock) => {
+            let list = new MyStocks(
+                stock.symbol,
+                dataResolution,
+                stock.quantity,
+                stock.price,
+                stock.value
+            );
+            let data = await list.companyStockQoutes();
+            return data.c * stock.quantity;
+        });
 
-  SET('balance', balance);
+        console.log(x); //(3) [Promise, Promise, Promise]
+
+        let values = await Promise.all(x); //[ech price * quantity]
+
+        console.log(values); //[114.96, 20944, 1034.6399999999999]
+
+        let total = values.reduce((acc, val) => {
+            return acc + val;
+        });
+
+        console.log(total); //22093.6
+
+        balance = GET('cash') + total;
+    }
+
+    SET('balance', balance);
 }
