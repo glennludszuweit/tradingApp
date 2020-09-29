@@ -7,7 +7,6 @@ let localStorageStocks = [];
 let cash = [];
 let balance = [];
 let LSValue = 0;
-let quantity = 1;
 
 export function setLocalStorage() {
   //set stocks

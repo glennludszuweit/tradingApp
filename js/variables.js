@@ -12,3 +12,4 @@ let lowPrices = [];
 let companyName = [];
 let companySymbol = [];
 let dataResolution = 'D';
+let quantity = 1;
