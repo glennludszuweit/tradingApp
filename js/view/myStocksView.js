@@ -40,6 +40,7 @@ export function displayMyStocks() {
             selectedCompany = e.target;
             selectedCompany.classList.add('highlight');
         }
+
         let item = e.target.innerText
             .replace(/(\r\n|\n|\r)/gm, ' ')
             .split(' ') // ["aapl", " ", " apple", " ", "inc",  "$87263948"]

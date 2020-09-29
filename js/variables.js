@@ -1,3 +1,5 @@
+const container = document.querySelector('.container');
+
 const search = document.querySelector('.search');
 const resolution = document.querySelector('.resolution');
 const submitBtn = document.querySelector('.reference');
@@ -5,8 +7,8 @@ const submitBtn = document.querySelector('.reference');
 const companyInfo = document.querySelector('.company-info');
 const companyBasicInfo = document.querySelector('.price-details_comp-name');
 const basicInfo = document.querySelector('.basic-info');
+
 const displayPortfolioStocks = document.querySelector('.portfolio-stocks');
-const myStocksLists = document.querySelectorAll('.company-overview');
 
 const quantityInput = document.querySelector('.quantity');
 
@@ -15,6 +17,8 @@ const displayBalance = document.querySelector('.balance');
 
 const buyStocks = document.getElementById('buy-stocks');
 const sellStocks = document.getElementById('sell-stocks');
+
+const confirmModal = document.querySelector('.modal');
 
 let totalStockValue = document.getElementById('stock-value');
 
