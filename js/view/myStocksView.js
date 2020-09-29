@@ -24,53 +24,54 @@ async function loadStockInfo() {
   await myStock.companyInfo();
 }
 
-displayPortfolioStocks.addEventListener('click', async (e) => {
-  e.preventDefault();
-  lib.removeData();
+export function displayMyStocks() {
+  displayPortfolioStocks.addEventListener('click', async (e) => {
+    e.preventDefault();
+    lib.removeData();
 
-  if (e.target.className === 'company-overview' || e.target !== 0) {
-    //change color in delegation
-    if (e.target.className !== 'company-overview') {
-      return;
+    if (e.target.className === 'company-overview' || e.target !== 0) {
+      //change color in delegation
+      if (e.target.className !== 'company-overview') {
+        return;
+      }
+      if (selectedCompany) {
+        selectedCompany.classList.remove('highlight');
+      }
+      selectedCompany = e.target;
+      selectedCompany.classList.add('highlight');
     }
-    if (selectedCompany) {
-      selectedCompany.classList.remove('highlight');
-    }
-    selectedCompany = e.target;
-    selectedCompany.classList.add('highlight');
-  }
-  let item = e.target.innerText
-    .replace(/(\r\n|\n|\r)/gm, ' ')
-    .split(' ') // ["aapl", " ", " apple", " ", "inc",  "$87263948"]
-    .filter(Boolean);
+    let item = e.target.innerText
+      .replace(/(\r\n|\n|\r)/gm, ' ')
+      .split(' ') // ["aapl", " ", " apple", " ", "inc",  "$87263948"]
+      .filter(Boolean);
 
-  [symbol, , quantity, price] = item;
+    [symbol, , quantity, price] = item;
 
-  await loadStockInfo();
-  displayMyStockData();
+    await loadStockInfo();
+    displayMyStockData();
 
-  chart(timesStamps, highPrices, lowPrices);
+    chart(timesStamps, highPrices, lowPrices);
 
-  buyStocks.style.display = 'none';
-  sellStocks.style.display = '';
-});
-
-export async function loadPortfolioStocks() {
-  loadStartingMoney();
-  let output = stocks.map((stock) => {
-    return `
-      <div class="company-overview">
-        <div class="company-name">
-          <h3 class="description">${stock.symbol}</h3>
-          <p><small class="company-shares">Shares ${stock.quantity}</small></p>
-        </div>
-        <div class="mini-graph"></div>
-        <div class="price">${stock.price}</div>
-      </div>
-    `;
+    sellStocks.style.display = '';
   });
-  displayPortfolioStocks.innerHTML = output.join('');
 }
+
+// export async function loadPortfolioStocks() {
+//   loadStartingMoney();
+//   let output = stocks.map((stock) => {
+//     return `
+//       <div class="company-overview">
+//         <div class="company-name">
+//           <h3 class="description">${stock.symbol}</h3>
+//           <p><small class="company-shares">Shares ${stock.quantity}</small></p>
+//         </div>
+//         <div class="mini-graph"></div>
+//         <div class="price">${stock.price}</div>
+//       </div>
+//     `;
+//   });
+//   displayPortfolioStocks.innerHTML = output.join('');
+// }
 
 export async function loadTotalStocks() {
   loadStartingMoney();
@@ -91,7 +92,10 @@ export async function loadTotalStocks() {
   });
 
   let output = Object.values(list).map((stock) => {
-    return `
+    if (stock.quantity <= 0) {
+      return;
+    } else {
+      return `
       <div class="company-overview">
         <div class="company-name">
           <h3 class="description">${stock.symbol}</h3>
@@ -101,11 +105,15 @@ export async function loadTotalStocks() {
         <div class="price">$${stock.value.toFixed(2)}</div>
       </div>
     `;
+    }
   });
+
   displayPortfolioStocks.innerHTML = output.join('');
 }
 
 function displayMyStockData() {
+  calculateBalance = currentPrice[0].toFixed(2) * quantity;
+
   basicInfo.innerHTML = `
   <div class="search-stock-info">
     <div>

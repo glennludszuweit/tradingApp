@@ -49,7 +49,7 @@ export function setLocalStorageBalance() {
   if (GET('balance') === null) {
     balance = SET('balance', 1000000);
   } else {
-    balance = GET('cash');
+    balance = GET('cash') + currentPrice[0] * stock.quantity;
   }
 
   SET('balance', balance);
