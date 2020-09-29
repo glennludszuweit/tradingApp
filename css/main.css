@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+.dark {
+  --bg1: #222428;
+  --bg2: #090d16;
+  --text1: #ffffff;
+  --text2: #7f8f9c;
+}
+
+.light {
+  --bg1: #f4f7f9;
+  --bg2: #ffffff;
+  --text1: #000000;
+  --text2: #82929f;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #222428;
+  margin: 40px auto;
+  width: 90%;
+}
+
+a:link,
+a:visited {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.comp-info-container-margin {
+  margin: 25px 40px;
+}
+
+.highlight {
+  background-color: #090d16;
+}
+
+.nav {
+  width: 15%;
+  background-color: #222428;
+  border-right: 1px solid #090d16;
+  overflow: hidden;
+}
+.nav .logo {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #46cf9a;
+}
+.nav .logo img {
+  height: 50px;
+}
+.nav .balance-info {
+  padding: 15px;
+}
+.nav .balance-info .total-info {
+  color: #7f8f9c;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 10px 20px;
+}
+.nav .balance-info .total-amount {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+.nav .balance-info :last-child {
+  border-bottom: 1px solid #090d16;
+  padding: 0;
+  padding-bottom: 30px;
+}
+.nav .menu-items {
+  padding-top: 15px;
+}
+.nav .menu-items .item {
+  height: 45px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #7f8f9c;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.nav .menu-items .active {
+  color: #ffffff;
+}
+.nav .menu-items .active :hover {
+  color: #46cf9a;
+}
+.nav .menu-items .item:hover {
+  color: #ffffff;
+}
+.nav .menu-items #portfolio {
+  display: inline-flex;
+  width: 150px;
+}
+.nav .menu-items #potrfolio-count {
+  display: inline;
+  border-radius: 2px;
+  background-color: #46cf9a;
+  padding: 5px 10px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.companies {
+  background: #222428;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+.companies .resolution-picker {
+  display: flex;
+  justify-content: center;
+}
+.companies .resolution-picker .resolution {
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid #46cf9a;
+  margin: 0 10px;
+  padding: 3px 10px;
+  color: #7f8f9c;
+  background: transparent;
+  cursor: pointer;
+}
+.companies .resolution-picker .resolution:hover {
+  transform: scale(1.1);
+}
+.companies .company-overview {
+  height: 80px;
+  border: none;
+  border-bottom: 1px solid #090d16;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  cursor: pointer;
+  border: none;
+  box-shadow: 20px 24px 3px -24px #090d16;
+}
+.companies .company-overview:hover {
+  background: #090d16;
+}
+.companies .input-span {
+  height: 80px;
+}
+.companies input,
+.companies select {
+  width: 100%;
+  background-color: #222428;
+  height: 80px;
+  border: none;
+  color: #7f8f9c;
+  text-align: center;
+  text-align-last: center;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+}
+.companies input:focus,
+.companies textarea:focus,
+.companies select:focus {
+  outline: none;
+}
+.companies i {
+  font-size: 20px;
+  position: absolute;
+  padding: 30px;
+  color: #ffffff38;
+}
+.companies .reference {
+  background: #46cf9a;
+  color: #ffffff;
+  cursor: pointer;
+}
+.companies .reference:hover {
+  background: #090d16;
+}
+.companies .company-name {
+  margin-left: 20px;
+}
+.companies .company-name h3 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 5px 0;
+}
+.companies .company-name small {
+  font-size: 15px;
+  color: #7f8f9c;
+}
+.companies .price {
+  color: #46cf9a;
+  font-size: 18px;
+  font-weight: 300;
+  margin-right: 10px;
+}
+
+.company-info {
+  background: #090d16;
+  width: 65%;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 80px;
+}
+.company-info .search-stock-info {
+  display: flex;
+  justify-content: space-between;
+}
+.company-info .basic-info .price-big {
+  font-weight: 300;
+  font-size: 50px;
+}
+.company-info .basic-info .search-price-details {
+  display: flex;
+  justify-content: space-between;
+}
+.company-info .basic-info .price-details_shares {
+  color: #ffffff;
+}
+.company-info .basic-info .price-details_shares .open-price {
+  color: #ffffff;
+  font-size: 14px;
+}
+.company-info .basic-info .price-details_shares .high-price {
+  color: #46cf9a;
+}
+.company-info .basic-info .price-details_shares .low-price {
+  color: #fa4e3b;
+}
+.company-info .basic-info .price-details_comp-name {
+  text-align: right;
+}
+.company-info .basic-info .price-details_comp-name .comp-symbol {
+  font-size: 25px;
+  font-weight: 400;
+}
+.company-info .basic-info .price-details_comp-name small {
+  color: #ffffff;
+}
+.company-info .chart-container {
+  text-align: right;
+}
+.company-info .chart-container .chart-type {
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid #7f8f9c;
+  margin: 0 5px 0 0;
+  padding: 3px 10px;
+  color: #7f8f9c;
+  background: transparent;
+  cursor: pointer;
+}
+.company-info .chart-container .chart-type:hover {
+  transform: scale(1.1);
+}
+.company-info .data-chart {
+  margin: 50px;
+}
+.company-info .buttons {
+  text-align: right;
+}
+.company-info .buttons input {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
+  margin: 0 0 0 20px;
+  border: none;
+  width: 10%;
+  color: #ffffff;
+  background-color: #222428;
+}
+.company-info .buttons button {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px 80px;
+  margin: 0 0 0 20px;
+  border: none;
+  cursor: pointer;
+  background: #46cf9a;
+  color: #ffffff;
+}
+.company-info .buttons button:hover {
+  background-color: #222428;
+}
+.company-info .resolution-picker {
+  display: flex;
+  justify-content: center;
+}
+.company-info .resolution-picker .resolution {
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid #46cf9a;
+  margin: 0 10px;
+  padding: 3px 10px;
+  color: #7f8f9c;
+  background: transparent;
+  cursor: pointer;
+}
+.company-info .resolution-picker .resolution:hover {
+  transform: scale(1.1);
+}
+
+/*# sourceMappingURL=main.css.map */
