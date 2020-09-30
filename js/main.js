@@ -1,6 +1,5 @@
 import { loadTotalStocks, displayMyStocks } from './view/myStocksView.js';
 import { searchStock } from './view/stocksView.js';
-
 import * as lib from './controller/lib.js';
 import * as LS from './controller/localStorage.js';
 
@@ -14,6 +13,7 @@ loadTotalStocks();
 //let localStorage Money
 LS.setLocalStorageCash();
 LS.setLocalStorageBalance();
+LS.loadStartingMoney();
 
 //modal
 lib.proceedConfirmModal();
@@ -21,16 +21,14 @@ lib.cancelConfirmModal();
 
 // Buy Stocks
 buyStocks.addEventListener('click', (e) => {
-    e.preventDefault();
-    lib.openConfirmModal();
-    quantity = quantityInput.value;
-    LS.setLocalStorage();
+  e.preventDefault();
+  lib.openConfirmModal();
+  quantity = quantityInput.value;
 });
 
 //Sell Stocks
 sellStocks.addEventListener('click', (e) => {
-    e.preventDefault();
-    lib.openConfirmModal();
-    quantity = -quantityInput.value;
-    LS.setLocalStorage();
+  e.preventDefault();
+  lib.openConfirmModal();
+  quantity = -quantityInput.value;
 });

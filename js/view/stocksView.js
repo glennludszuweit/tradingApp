@@ -2,44 +2,45 @@ import Stocks from '../model/Stocks.js';
 import * as lib from '../controller/lib.js';
 import chart from './chart.js';
 
+const search = document.querySelector('.search');
+const submitBtn = document.querySelector('.reference');
+
 export async function searchStock() {
-    submitBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
+  submitBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
 
-        lib.removeData();
+    lib.removeData();
 
-        await loadSearchInfo();
+    await loadSearchInfo();
 
-        chart(timesStamps, highPrices, lowPrices);
+    chart(timesStamps, highPrices, lowPrices);
 
-        search.value = '';
+    search.value = '';
 
-        sellStocks.style.display = 'none';
-        buyStocks.style.display = '';
+    sellStocks.style.display = 'none';
+    buyStocks.style.display = '';
 
-        /////remove highligh from list when searching stocks
-        let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {
-            return stock.childNodes[1];
-        });
-        x.filter(Boolean).forEach((y) =>
-            y.parentElement.classList.remove('highlight')
-        );
+    /////remove highligh from list when searching stocks
+    let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {
+      return stock.childNodes[1];
     });
+    x.filter(Boolean).forEach((y) =>
+      y.parentElement.classList.remove('highlight')
+    );
+  });
 }
 
-console.log(displayPortfolioStocks.children);
-
 async function loadSearchInfo() {
-    const stock = new Stocks(search.value, dataResolution);
-    await stock.companyStockCandles();
-    await stock.companyInfo();
-    await stock.companyStockQoutes();
+  const stock = new Stocks(search.value, dataResolution);
+  await stock.companyStockCandles();
+  await stock.companyInfo();
+  await stock.companyStockQoutes();
 
-    displaySearchStockData();
+  displaySearchStockData();
 }
 
 function displaySearchStockData() {
-    basicInfo.innerHTML = `
+  basicInfo.innerHTML = `
   <small>Current Price</small>
   <div class="price-big">$${currentPrice[0]}</div>
   <div class="search-price-details">
@@ -50,10 +51,10 @@ function displaySearchStockData() {
       <div>
         <small
           ><span class="high-price">$${highPrices[
-              highPrices.length - 1
+            highPrices.length - 1
           ].toFixed(2)} (High) </span> |
           <span class="low-price">$${lowPrices[lowPrices.length - 1].toFixed(
-              2
+            2
           )} (Low) </span
         ></small>
       </div>

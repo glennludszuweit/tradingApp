@@ -1,3 +1,6 @@
+let chartType = 'bar';
+let myChart;
+
 export default function chartIt(label, data1, data2) {
   let ctx = document.getElementById('myChart').getContext('2d');
   if (myChart != undefined) myChart.destroy();
