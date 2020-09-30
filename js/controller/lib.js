@@ -61,7 +61,8 @@ export function newSymbolArr() {
 export function calculateInvestments() {
   let stocks = GET('stocks');
   if (stocks) {
-    return stocks.reduce((acc, stock) => acc + stock.value, 0);
+    let total = stocks.reduce((acc, stock) => acc + stock.value, 0);
+    return total;
   } else {
     return;
   }

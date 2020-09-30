@@ -12,21 +12,55 @@
     "></script>
 
     <style>
+      /* HISTORY */
+
+      .history {
+        height: 600px;
+        overflow-y: scroll;
+      }
+      .history h1 {
+        color: #46cf9a;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+      .history table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .history table thead th {
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .history table th,
+      .history table td {
+        padding: 1rem;
+        max-height: 25px;
+        text-align: left;
+      }
+      .history table tbody tr:nth-child(odd) {
+        background: #222428;
+      }
+      /* NEWS */
+      .trading-news h1 {
+        color: #46cf9a;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
       .stocks-news {
-        height: 800px;
+        height: 600px;
         overflow-y: scroll;
       }
 
       .stocks-news .news-container {
         display: flex;
-        width: 800px;
+        width: 90%;
         margin: 0 auto;
         padding: 20px 0;
       }
 
       .stocks-news .news-container .news-img img {
-        width: 300px;
-        height: 200px;
+        width: 200px;
+        height: 100px;
         object-fit: cover;
       }
     </style>
@@ -51,7 +85,7 @@
           <div class="total-amount balance"></div>
         </div>
         <div class="menu-items">
-          <div>
+          <!-- <div>
             <div class="item active" id="portfolio">My Stocks</div>
             <div id="potrfolio-count">22</div>
           </div>
@@ -66,7 +100,7 @@
           <div>
             <div class="item active" id="portfolio">Total Spent</div>
             <div id="potrfolio-count">$300.00</div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -89,27 +123,7 @@
 
       <!-- GLENN & RASEL (_comp-info.scss)-->
       <div class="company-info">
-        <div class="basic-info comp-info-container-margin">
-          <small>Current Price</small>
-          <div class="price-big"></div>
-          <div class="price-details">
-            <div class="price-details_shares">
-              <div>
-                <small>Latest High and Low Prices</small>
-              </div>
-              <div>
-                <small
-                  ><span class="high-price"></span> |
-                  <span class="low-price"></span
-                ></small>
-              </div>
-            </div>
-            <div class="price-details_comp-name">
-              <h3 class="comp-symbol"></h3>
-              <small class="comp-name-small"></small>
-            </div>
-          </div>
-        </div>
+        <div class="basic-info comp-info-container-margin"></div>
 
         <hr />
 
@@ -119,21 +133,31 @@
         </div> -->
 
         <div class="data-chart comp-info-container-margin">
-          <div class="stocks-news"></div>
           <canvas id="myChart" height="150"></canvas>
-        </div>
 
-        <!-- <div class="resolution-picker">
-          <button class="resolution" onclick="changeChartResolution('D')">
-            Daily
-          </button>
-          <button class="resolution" onclick="changeChartResolution('W')">
-            Weekly
-          </button>
-          <button class="resolution" onclick="changeChartResolution('M')">
-            Monthly
-          </button>
-        </div> -->
+          <div class="history">
+            <h1>Trading History</h1>
+            <table class="zebra">
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total Investment</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody class="history-data"></tbody>
+            </table>
+          </div>
+
+          <!-- <hr /> -->
+
+          <!-- <div class="trading-news">
+            <h1>Stocks News</h1>
+            <div class="stocks-news"></div>
+          </div> -->
+        </div>
 
         <hr />
 

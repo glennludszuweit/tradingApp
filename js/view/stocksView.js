@@ -21,7 +21,8 @@ export async function searchStock() {
     buyStocks.style.display = '';
     quantityInput.style.display = '';
     chartCanvas.style.display = '';
-    displayHomeView.style.display = 'none';
+    displayNews.style.display = 'none';
+    displayTradingHistory.style.display = 'none';
 
     /////remove highligh from list when searching stocks
     let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {

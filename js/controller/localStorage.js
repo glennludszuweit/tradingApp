@@ -31,6 +31,7 @@ function setLocalStorageStocks() {
   obj.quantity = +quantity;
   obj.price = currentPrice[0];
   obj.value = obj.quantity * obj.price;
+  obj.date = moment().format('DD MMM YYYY, h:mm a');
 
   LSValue = obj.value;
   localStorageStocks.push(obj);

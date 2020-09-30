@@ -5,7 +5,8 @@ const buyStocks = document.getElementById('buy-stocks');
 const sellStocks = document.getElementById('sell-stocks');
 const quantityInput = document.querySelector('.quantity');
 
-const displayHomeView = document.querySelector('.stocks-news');
+const displayNews = document.querySelector('.trading-news');
+const displayTradingHistory = document.querySelector('.history');
 const chartCanvas = document.querySelector('canvas');
 
 let chartType = 'bar';
@@ -21,3 +22,7 @@ let dataResolution = 'D';
 
 let quantity = 1;
 let cash = [];
+let chartStocksValue = [];
+let chartInvestmentValue = [];
+
+let xyz = [];

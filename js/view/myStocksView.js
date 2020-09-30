@@ -8,6 +8,7 @@ let stocks = lib.GET('stocks');
 let symbol;
 let quantity;
 let price;
+let value;
 
 async function loadStockInfo() {
   const myStock = new MyStocks(symbol, dataResolution, quantity, price);
@@ -49,13 +50,15 @@ export function displayMyStocks() {
     sellStocks.style.display = '';
     quantityInput.style.display = '';
     chartCanvas.style.display = '';
-    displayHomeView.style.display = 'none';
+    displayNews.style.display = 'none';
+    displayTradingHistory.style.display = 'none';
   });
 }
 
 export async function loadTotalStocks() {
   // loadStartingMoney();
   let list = {};
+
   stocks.forEach((stock) => {
     if (!list[stock.symbol]) {
       list[stock.symbol] = new MyStocks(
@@ -70,30 +73,40 @@ export async function loadTotalStocks() {
       list[stock.symbol].value += stock.value;
     }
   });
-
   let output = await Promise.all(
     Object.values(list).map(async (stock) => {
       if (stock.quantity <= 0) {
         return;
       } else {
+        value = stock.value;
+        const data = await stock.companyStockQoutes();
         return `
-        <div class="company-overview">
-          <div class="company-name">
-            <h3 class="description">${stock.symbol}</h3>
-            <p><small class="company-shares">Shares ${
-              stock.quantity
-            }</small></p>
-          </div>
-          <div class="mini-graph"></div>
-          <div class="price">$${
-            stock.value - stock.quantity * currentPrice[0]
-          }</div>
-        </div>
-      `;
+            <div class="company-overview">
+              <div class="company-name">
+                <h3 class="description">${stock.symbol}</h3>
+                <p><small class="company-shares">Shares ${
+                  stock.quantity
+                }</small></p>
+              </div>
+              <div class="mini-graph"></div>
+              <div class="price stock-status">$ ${(
+                stock.quantity * data.c -
+                stock.value
+              ).toFixed(2)}</div>
+            </div>
+          `;
       }
     })
   );
+
   displayPortfolioStocks.innerHTML = output.join('');
+
+  const status = document.querySelectorAll('.stock-status');
+  status.forEach((element) => {
+    if (element.innerText.includes('-')) {
+      element.style.color = '#fa4e3b';
+    }
+  });
 }
 
 function displayMyStockData() {
@@ -112,7 +125,7 @@ function displayMyStockData() {
               ><span class="high-price">$${highPrices[
                 highPrices.length - 1
               ].toFixed(2)} (High) </span> |
-              <span class="low-price">$${lowPrices[
+              <span class="low-price">$ ${lowPrices[
                 lowPrices.length - 1
               ].toFixed(2)} (Low) </span
             ></small>
@@ -129,13 +142,13 @@ function displayMyStockData() {
 
     <div class="price-details_comp-name">
       <small>Stock Value</small>
-      <div class="price-big" id="stock-value" style="color: #46cf9a">$${(
+      <div class="price-big" id="stock-value" style="color: #46cf9a">$ ${(
         currentPrice[0] * quantity
       ).toFixed(2)}</div>
       <div class="price-details">
         <div class="price-details_shares">
           <small class="comp-name-small">Money Spent</small>
-          <h4 class="comp-symbol">${price}</h4>
+          <h4 class="comp-symbol">$ ${value.toFixed(2)}</h4>
         </div>
       </div>
     </div>
