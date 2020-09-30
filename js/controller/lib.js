@@ -67,7 +67,7 @@ export function calculateInvestments() {
   }
 }
 
-export async function calculateStocksValue() {
+export async function calculateStockLatestValue() {
   let x = GET('stocks').map(async (stock) => {
     let list = new MyStocks(
       stock.symbol,
@@ -79,6 +79,11 @@ export async function calculateStocksValue() {
     let data = await list.companyStockQoutes();
     return data.c * stock.quantity;
   });
+  return x;
+}
+
+export async function calculateStocksValue() {
+  let x = await calculateStockLatestValue();
   let values = await Promise.all(x);
   let total = values.reduce((acc, val) => {
     return acc + val;

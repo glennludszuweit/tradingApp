@@ -71,11 +71,12 @@ export async function loadTotalStocks() {
     }
   });
 
-  let output = Object.values(list).map((stock) => {
-    if (stock.quantity <= 0) {
-      return;
-    } else {
-      return `
+  let output = await Promise.all(
+    Object.values(list).map(async (stock) => {
+      if (stock.quantity <= 0) {
+        return;
+      } else {
+        return `
         <div class="company-overview">
           <div class="company-name">
             <h3 class="description">${stock.symbol}</h3>
@@ -84,12 +85,14 @@ export async function loadTotalStocks() {
             }</small></p>
           </div>
           <div class="mini-graph"></div>
-          <div class="price">$${stock.value.toFixed(2)}</div>
+          <div class="price">$${
+            stock.value - stock.quantity * currentPrice[0]
+          }</div>
         </div>
       `;
-    }
-  });
-
+      }
+    })
+  );
   displayPortfolioStocks.innerHTML = output.join('');
 }
 
