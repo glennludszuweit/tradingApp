@@ -44,3 +44,10 @@ export function cancelConfirmModal() {
     confirmModal.style.display = 'none';
   });
 }
+
+export function totalQuantity(symbol) {
+  return GET('stocks').reduce(
+    (acc, stock) => (symbol === stock.symbol ? acc + stock.quantity : acc),
+    0
+  );
+}

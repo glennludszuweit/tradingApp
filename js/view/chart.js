@@ -1,4 +1,4 @@
-let chartType = 'bar';
+let chartType = 'line';
 let myChart;
 
 export default function chartIt(label, data1, data2) {

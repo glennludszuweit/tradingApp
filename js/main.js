@@ -22,13 +22,24 @@ lib.cancelConfirmModal();
 // Buy Stocks
 buyStocks.addEventListener('click', (e) => {
   e.preventDefault();
-  lib.openConfirmModal();
   quantity = quantityInput.value;
+  if (cash >= currentPrice[0] * quantity) {
+    lib.openConfirmModal();
+  } else {
+    throw new Error('hallo?');
+  }
 });
 
 //Sell Stocks
 sellStocks.addEventListener('click', (e) => {
   e.preventDefault();
-  lib.openConfirmModal();
+  // lib.totalQuantity(companySymbol[0]);
   quantity = -quantityInput.value;
+
+  if (-quantity <= lib.totalQuantity(companySymbol[0])) {
+    lib.openConfirmModal();
+  } else {
+    throw new Error('hallo?');
+  }
+  console.log(lib.totalQuantity(companySymbol[0]));
 });

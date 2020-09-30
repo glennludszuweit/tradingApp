@@ -11,5 +11,7 @@ let highPrices = [];
 let lowPrices = [];
 let companyName = [];
 let companySymbol = [];
-let dataResolution = 'D';
+let dataResolution = 'W';
+
 let quantity = 1;
+let cash = [];

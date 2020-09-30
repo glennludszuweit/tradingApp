@@ -4,7 +4,6 @@ import MyStocks from '../model/MyStocks.js';
 const displayCash = document.querySelector('.cash');
 const displayBalance = document.querySelector('.balance');
 let localStorageStocks = [];
-let cash = [];
 let balance = [];
 let LSValue = 0;
 

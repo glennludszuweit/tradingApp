@@ -80,7 +80,7 @@ export async function loadTotalStocks() {
             }</small></p>
           </div>
           <div class="mini-graph"></div>
-          <div class="price">$${stock.price.toFixed(2) * stock.quantity}</div>
+          <div class="price">$${stock.value.toFixed(2)}</div>
         </div>
       `;
     }
@@ -122,9 +122,9 @@ function displayMyStockData() {
 
     <div class="price-details_comp-name">
       <small>Stock Value</small>
-      <div class="price-big" id="stock-value" style="color: #46cf9a">$${
-        currentPrice[0].toFixed(2) * quantity
-      }</div>
+      <div class="price-big" id="stock-value" style="color: #46cf9a">$${(
+        currentPrice[0] * quantity
+      ).toFixed(2)}</div>
       <div class="price-details">
         <div class="price-details_shares">
           <small class="comp-name-small">Money Spent</small>
