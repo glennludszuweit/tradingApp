@@ -10,6 +10,26 @@
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js
     "></script>
+
+    <style>
+      .stocks-news {
+        height: 800px;
+        overflow-y: scroll;
+      }
+
+      .stocks-news .news-container {
+        display: flex;
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      .stocks-news .news-container .news-img img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
   </head>
   <body>
     <!-- confirm modal -->
@@ -93,16 +113,17 @@
 
         <hr />
 
-        <div class="chart-container comp-info-container-margin">
+        <!-- <div class="chart-container comp-info-container-margin">
           <button class="chart-type" onclick="lineChart()">line</button>
           <button class="chart-type" onclick="barChart()">bar</button>
-        </div>
+        </div> -->
 
         <div class="data-chart comp-info-container-margin">
+          <div class="stocks-news"></div>
           <canvas id="myChart" height="150"></canvas>
         </div>
 
-        <div class="resolution-picker">
+        <!-- <div class="resolution-picker">
           <button class="resolution" onclick="changeChartResolution('D')">
             Daily
           </button>
@@ -112,7 +133,7 @@
           <button class="resolution" onclick="changeChartResolution('M')">
             Monthly
           </button>
-        </div>
+        </div> -->
 
         <hr />
 

@@ -45,7 +45,11 @@ export function displayMyStocks() {
 
     chart(timesStamps, highPrices, lowPrices);
 
+    buyStocks.style.display = '';
     sellStocks.style.display = '';
+    quantityInput.style.display = '';
+    chartCanvas.style.display = '';
+    displayHomeView.style.display = 'none';
   });
 }
 

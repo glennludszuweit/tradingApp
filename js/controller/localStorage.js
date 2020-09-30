@@ -51,21 +51,7 @@ export async function setLocalStorageBalance() {
   if (lib.GET('balance') === null) {
     lib.SET('balance', (balance = 1000000));
   } else {
-    let x = lib.GET('stocks').map(async (stock) => {
-      let list = new MyStocks(
-        stock.symbol,
-        dataResolution,
-        stock.quantity,
-        stock.price,
-        stock.value
-      );
-      let data = await list.companyStockQoutes();
-      return data.c * stock.quantity;
-    });
-    let values = await Promise.all(x);
-    let total = values.reduce((acc, val) => {
-      return acc + val;
-    });
+    let total = await lib.calculateStocksValue();
     balance = lib.GET('cash') + total;
   }
 

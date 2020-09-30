@@ -1,4 +1,5 @@
 import * as LS from './localStorage.js';
+import MyStocks from '../model/MyStocks.js';
 
 const container = document.querySelector('.container');
 const confirmModal = document.querySelector('.modal');
@@ -50,4 +51,37 @@ export function totalQuantity(symbol) {
     (acc, stock) => (symbol === stock.symbol ? acc + stock.quantity : acc),
     0
   );
+}
+
+export function newSymbolArr() {
+  let newArr = GET('stocks').map((stock) => stock.symbol);
+  return [...new Set(newArr)].length;
+}
+
+export function calculateInvestments() {
+  let stocks = GET('stocks');
+  if (stocks) {
+    return stocks.reduce((acc, stock) => acc + stock.value, 0);
+  } else {
+    return;
+  }
+}
+
+export async function calculateStocksValue() {
+  let x = GET('stocks').map(async (stock) => {
+    let list = new MyStocks(
+      stock.symbol,
+      dataResolution,
+      stock.quantity,
+      stock.price,
+      stock.value
+    );
+    let data = await list.companyStockQoutes();
+    return data.c * stock.quantity;
+  });
+  let values = await Promise.all(x);
+  let total = values.reduce((acc, val) => {
+    return acc + val;
+  });
+  return total;
 }
