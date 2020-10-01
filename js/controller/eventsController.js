@@ -1,4 +1,4 @@
-import displayHomeView from '../view/homeView.js';
+import homeView from '../view/homeView.js';
 import stockController from './stocksController.js';
 import UI from './uiController.js';
 
@@ -33,7 +33,7 @@ class EventsController {
       e.preventDefault();
       /////remove highligh from list when searching stocks
       UI.removeHighlight();
-      displayHomeView.homeView();
+      homeView.displayHomeView();
     });
   }
 

@@ -1,5 +1,5 @@
-import { loadTotalStocks, displayMyStocks } from './view/myStocksView.js';
-import { searchStock } from './view/stocksView.js';
+import myStocksView from './view/myStocksView.js';
+import stocksView from './view/stocksView.js';
 import homeView from './view/homeView.js';
 import UI from './controller/uiController.js';
 import LS from './controller/lsController.js';
@@ -9,11 +9,11 @@ import eventController from './controller/eventsController.js';
 homeView.displayHomeView();
 
 //search stocks
-searchStock();
+stocksView.searchStock();
 
 //my stocks
-displayMyStocks();
-loadTotalStocks();
+myStocksView.displayMyStocks();
+myStocksView.loadTotalStocks();
 
 //let localStorage Money
 LS.setLocalStorageCash();

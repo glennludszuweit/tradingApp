@@ -1,32 +1,37 @@
 import stockController from '../controller/stocksController.js';
 import LS from '../controller/lsController.js';
+import chart from './chart.js';
 
-class Home {
-  displayHomeView() {
+class HomeView {
+  async displayHomeView() {
+    // display portfolio data
     this.displayMyData();
+    // display trading history
     this.tradingHistory();
-    this.chart();
+    // display to chart
+    chart(
+      [''],
+      [(await stockController.calculateStocksValue()).toFixed(2)],
+      [stockController.calculateInvestments().toFixed(2)]
+    );
     this.clear();
   }
 
   async displayMyData() {
     basicInfo.innerHTML = `
     <div class="search-stock-info">
-  
       <div>
         <small>Stocks Value</small>
         <div class="price-big stockValue">$ ${(
           await stockController.calculateStocksValue()
         ).toFixed(2)}</div>
       </div>
-  
       <div>
         <small>Investments</small>
         <div class="price-big investmentsValue">$ ${stockController
           .calculateInvestments()
           .toFixed(2)}</div>
       </div>
-  
       <div>
         <small>Earnings</small>
         <div class="price-big earnings">$ ${(
@@ -88,46 +93,6 @@ class Home {
     quantityInput.style.display = 'none';
     displayTradingHistory.style.display = '';
   }
-
-  async chart() {
-    let ctx = document.getElementById('myChart').getContext('2d');
-    if (myChart != undefined) myChart.destroy();
-    myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [''],
-        datasets: [
-          {
-            label: ['Stock Value'],
-            data: [(await stockController.calculateStocksValue()).toFixed(2)],
-            borderWidth: 2,
-            lineTension: 0,
-            borderColor: '#46CF9A',
-            backgroundColor: 'rgba(0,0,0, 0.1)',
-          },
-          {
-            label: ['Investment Value'],
-            data: [stockController.calculateInvestments().toFixed(2)],
-            borderWidth: 2,
-            lineTension: 0,
-            borderColor: '#fa4e3b',
-            backgroundColor: 'rgba(0,0,0, 0.1)',
-          },
-        ],
-      },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: false,
-              },
-            },
-          ],
-        },
-      },
-    });
-  }
 }
 
-export default new Home();
+export default new HomeView();

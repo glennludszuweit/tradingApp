@@ -41,6 +41,7 @@ export default class Stocks {
 
       companyName.push(data.name);
       companySymbol.push(data.ticker);
+
       return data;
     } catch (error) {
       console.log(error);
@@ -56,6 +57,7 @@ export default class Stocks {
       const data = await cachedFetch(url);
 
       currentPrice.push(data.c);
+
       return data;
     } catch (error) {
       console.log(error);
@@ -73,11 +75,9 @@ export default class Stocks {
       data.t.forEach((timestamp) => {
         timesStamps.push(new Date(timestamp * 1000).toDateString().slice(4));
       });
-
       data.h.forEach((highPrice) => {
         highPrices.push(highPrice);
       });
-
       data.l.forEach((lowPrice) => {
         lowPrices.push(lowPrice);
       });

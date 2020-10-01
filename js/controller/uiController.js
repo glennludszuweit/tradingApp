@@ -1,5 +1,4 @@
-import * as LS from './lsController.js';
-import MyStocks from '../model/MyStocks.js';
+import LS from './lsController.js';
 
 const container = document.querySelector('.container');
 const confirmModal = document.querySelector('.modal');
