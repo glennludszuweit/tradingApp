@@ -1,4 +1,4 @@
-import * as lib from '../controller/lib.js';
+import * as lib from '../controller/uiController.js';
 import LS from '../controller/lsController.js';
 import MyStocks from '../model/MyStocks.js';
 import chartIt from './chart.js';

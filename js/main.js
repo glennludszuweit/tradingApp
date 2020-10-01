@@ -1,7 +1,7 @@
 import { loadTotalStocks, displayMyStocks } from './view/myStocksView.js';
 import { searchStock } from './view/stocksView.js';
 import homeView from './view/homeView.js';
-import * as lib from './controller/lib.js';
+import UI from './controller/uiController.js';
 import LS from './controller/lsController.js';
 import eventController from './controller/eventsController.js';
 
@@ -21,9 +21,9 @@ LS.setLocalStorageBalance();
 LS.loadStartingMoney();
 
 //alert & modal
-lib.proceedConfirmModal();
-lib.cancelConfirmModal();
-lib.closeAlert();
+UI.proceedConfirmModal();
+UI.cancelConfirmModal();
+UI.closeAlert();
 
 // Buy Stocks
 eventController.buy();

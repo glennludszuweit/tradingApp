@@ -1,6 +1,6 @@
 import displayHomeView from '../view/homeView.js';
 import stockController from './stocksController.js';
-import * as lib from './lib.js';
+import UI from './uiController.js';
 
 class EventsController {
   buy() {
@@ -8,9 +8,9 @@ class EventsController {
       e.preventDefault();
       quantity = quantityInput.value;
       if (cash >= currentPrice[0] * quantity) {
-        lib.openConfirmModal();
+        UI.openConfirmModal();
       } else {
-        lib.openAlert();
+        UI.openAlert();
       }
     });
   }
@@ -21,9 +21,9 @@ class EventsController {
       quantity = -quantityInput.value;
 
       if (-quantity <= stockController.totalQuantity(companySymbol[0])) {
-        lib.openConfirmModal();
+        UI.openConfirmModal();
       } else {
-        lib.openAlert();
+        UI.openAlert();
       }
     });
   }
@@ -32,7 +32,7 @@ class EventsController {
     overview.addEventListener('click', (e) => {
       e.preventDefault();
       /////remove highligh from list when searching stocks
-      // lib.removeHighlight();
+      UI.removeHighlight();
       displayHomeView.homeView();
     });
   }

@@ -1,5 +1,5 @@
 import Stocks from '../model/Stocks.js';
-import * as lib from '../controller/lib.js';
+import UI from '../controller/uiController.js';
 import chartIt from './chart.js';
 
 const search = document.querySelector('.search');
@@ -9,7 +9,7 @@ export async function searchStock() {
   submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    lib.removeData();
+    UI.removeData();
 
     await loadSearchInfo();
 
@@ -18,7 +18,7 @@ export async function searchStock() {
     search.value = '';
 
     /////remove highligh from list when searching stocks
-    lib.removeHighlight();
+    UI.removeHighlight();
 
     displayTradingHistory.style.display = 'none';
     sellStocks.style.display = 'none';
