@@ -52,7 +52,6 @@ class LS {
     } else {
       cash = this.GET('cash') - LSValue;
     }
-
     this.SET('cash', cash);
   }
 
@@ -63,7 +62,6 @@ class LS {
       let total = await stockController.calculateStocksValue();
       balance = this.GET('cash') + total;
     }
-
     this.SET('balance', balance);
   }
 

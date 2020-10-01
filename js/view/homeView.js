@@ -14,6 +14,7 @@ class HomeView {
       [(await stockController.calculateStocksValue()).toFixed(2)],
       [stockController.calculateInvestments().toFixed(2)]
     );
+    // clear unwanted display
     this.clear();
   }
 

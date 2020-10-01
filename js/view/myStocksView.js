@@ -8,7 +8,6 @@ let stocks = LS.GET('stocks');
 let symbol;
 let quantity;
 let price;
-let list = {};
 
 class MyStocksView {
   displayMyStocks() {
@@ -37,8 +36,6 @@ class MyStocksView {
       await this.loadStockInfo();
       // display stocks info
       this.displayMyStockData();
-      // display lists of stocks
-      await this.loadTotalStocks();
       // display to chart
       chart(timesStamps, highPrices, lowPrices);
       // clear unwanted display
@@ -54,6 +51,7 @@ class MyStocksView {
   }
 
   async loadTotalStocks() {
+    let list = {};
     stocks.forEach((stock) => {
       if (!list[stock.symbol]) {
         list[stock.symbol] = new MyStocks(
@@ -68,10 +66,6 @@ class MyStocksView {
         list[stock.symbol].value += stock.value;
       }
     });
-    this.renderLists();
-  }
-
-  async renderLists() {
     let output = await Promise.all(
       Object.values(list).map(async (stock) => {
         if (stock.quantity <= 0) {

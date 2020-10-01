@@ -26,5 +26,3 @@ let dataResolution = 'D';
 
 let quantity = 1;
 let cash = [];
-
-let xyz = [];
