@@ -70,7 +70,7 @@ function tradingHistory() {
   historyData.innerHTML = output.join('');
 }
 
-function chart() {
+async function chart() {
   let ctx = document.getElementById('myChart').getContext('2d');
   if (myChart != undefined) myChart.destroy();
   myChart = new Chart(ctx, {
@@ -80,7 +80,7 @@ function chart() {
       datasets: [
         {
           label: ['Stock Value'],
-          data: [8000],
+          data: [(await lib.calculateStocksValue()).toFixed(2)],
           borderWidth: 2,
           lineTension: 0,
           borderColor: '#46CF9A',
@@ -88,7 +88,7 @@ function chart() {
         },
         {
           label: ['Investment Value'],
-          data: [10000],
+          data: [lib.calculateInvestments().toFixed(2)],
           borderWidth: 2,
           lineTension: 0,
           borderColor: '#fa4e3b',

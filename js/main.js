@@ -21,9 +21,9 @@ LS.setLocalStorageCash();
 LS.setLocalStorageBalance();
 LS.loadStartingMoney();
 
-//modal
-lib.proceedConfirmModal();
+//alert & modal
 lib.cancelConfirmModal();
+lib.closeAlert();
 
 // Buy Stocks
 buyStocks.addEventListener('click', (e) => {
@@ -32,7 +32,7 @@ buyStocks.addEventListener('click', (e) => {
   if (cash >= currentPrice[0] * quantity) {
     lib.openConfirmModal();
   } else {
-    throw new Error('hallo?');
+    lib.openAlert();
   }
 });
 
@@ -45,7 +45,7 @@ sellStocks.addEventListener('click', (e) => {
   if (-quantity <= lib.totalQuantity(companySymbol[0])) {
     lib.openConfirmModal();
   } else {
-    throw new Error('hallo?');
+    lib.openAlert();
   }
   console.log(lib.totalQuantity(companySymbol[0]));
 });

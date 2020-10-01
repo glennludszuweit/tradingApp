@@ -10,6 +10,37 @@
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js
     "></script>
+    <style>
+      .alert {
+        width: 500px;
+        background-color: #222428;
+        color: #fff;
+        font-size: 20px;
+        border: 1px solid #f64e3b;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        display: none;
+      }
+      .alert .alert-message {
+        padding: 20px;
+        text-align: center;
+      }
+      .alert .close {
+        padding: 0 5px;
+        text-align: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        background-color: #f64e3b;
+      }
+      .alert .close:hover {
+        background-color: #090d16;
+      }
+    </style>
   </head>
   <body>
     <!-- confirm modal -->
@@ -19,6 +50,10 @@
         <button class="cancel">Cancel</button>
         <button class="proceed">Proceed</button>
       </div>
+    </div>
+    <div class="alert">
+      <div class="alert-message">Hallo!? Alles klar..??</div>
+      <p class="close">x</p>
     </div>
     <div class="container">
       <!-- MICHA (_navigation.scss-->
@@ -31,22 +66,9 @@
           <div class="total-amount balance"></div>
         </div>
         <div class="menu-items">
-          <!-- <div>
-            <div class="item active" id="portfolio">My Stocks</div>
-            <div id="potrfolio-count">22</div>
-          </div>
           <div>
-            <div class="item active" id="portfolio">Stocks Value</div>
-            <div id="potrfolio-count">$300.00</div>
+            <div class="item active" id="portfolio">Overview</div>
           </div>
-          <div>
-            <div class="item active" id="portfolio">Stocks Sold</div>
-            <div id="potrfolio-count">$300.00</div>
-          </div>
-          <div>
-            <div class="item active" id="portfolio">Total Spent</div>
-            <div id="potrfolio-count">$300.00</div>
-          </div> -->
         </div>
       </div>
 

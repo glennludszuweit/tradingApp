@@ -3,8 +3,10 @@ import MyStocks from '../model/MyStocks.js';
 
 const container = document.querySelector('.container');
 const confirmModal = document.querySelector('.modal');
+const alertModal = document.querySelector('.alert');
 const proceed = document.querySelector('.proceed');
 const cancel = document.querySelector('.cancel');
+const close = document.querySelector('.close');
 
 export function removeData() {
   timesStamps = [];
@@ -43,6 +45,19 @@ export function cancelConfirmModal() {
     e.preventDefault();
     container.style.filter = 'none';
     confirmModal.style.display = 'none';
+  });
+}
+
+export function openAlert() {
+  container.style.filter = 'blur(5px)';
+  alertModal.style.display = 'block';
+}
+
+export function closeAlert() {
+  close.addEventListener('click', (e) => {
+    e.preventDefault();
+    container.style.filter = 'none';
+    alertModal.style.display = 'none';
   });
 }
 
