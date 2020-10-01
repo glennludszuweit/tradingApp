@@ -17,12 +17,12 @@ class LS {
 
   setLocalStorage() {
     //set stocks
-    setLocalStorageStocks();
+    this.setLocalStorageStocks();
     // calculate cash
-    setLocalStorageCash();
+    this.setLocalStorageCash();
     displayCash.innerText = `$${this.GET('cash').toFixed(2)}`;
     //calculate balance
-    setLocalStorageBalance();
+    this.setLocalStorageBalance();
     displayBalance.innerText = `$${this.GET('balance').toFixed(2)}`;
   }
 
