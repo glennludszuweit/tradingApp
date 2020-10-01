@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock rates</title>
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js
+    "></script>
+  </head>
+  <body>
+    <!-- confirm modal -->
+    <div class="modal">
+      <div class="message">Are you sure?</div>
+      <div class="buttons">
+        <button class="cancel">Cancel</button>
+        <button class="proceed">Proceed</button>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="alert-message">Hallo!? Alles klar..??</div>
+      <p class="close">x</p>
+    </div>
+    <div class="container">
+      <!-- MICHA (_navigation.scss-->
+      <div class="nav">
+        <div class="logo"><img src="./img/logo.png" alt="logo" /></div>
+        <div class="balance-info">
+          <div class="total-info">Total Cash:</div>
+          <div class="total-amount cash"></div>
+          <div class="total-info">Total Balance:</div>
+          <div class="total-amount balance"></div>
+        </div>
+        <div class="menu-items">
+          <div class="item overview">Overview</div>
+        </div>
+        <div class="reset-data">
+          <button class="reset">Reset</button>
+        </div>
+      </div>
+
+      <!-- DANIEL (_stocks-lists.scss)-->
+
+      <div class="companies" id="scroll">
+        <form>
+          <input
+            class="search"
+            type="text"
+            placeholder="Search Stock by Symbol"
+          />
+          <input class="reference" type="submit" value="Search" />
+        </form>
+        <div class="companies-lists">
+          <!-- <h1>My Stocks</h1> -->
+          <div class="portfolio-stocks"></div>
+        </div>
+      </div>
+
+      <!-- GLENN & RASEL (_comp-info.scss)-->
+      <div class="company-info">
+        <div class="basic-info comp-info-container-margin"></div>
+
+        <hr />
+
+        <!-- <div class="chart-container comp-info-container-margin">
+          <button class="chart-type" onclick="lineChart()">line</button>
+          <button class="chart-type" onclick="barChart()">bar</button>
+        </div> -->
+
+        <div class="data-chart comp-info-container-margin">
+          <canvas id="myChart" height="120"></canvas>
+
+          <div class="history">
+            <h1>Trading History</h1>
+            <div class="table-scroll">
+              <table class="zebra">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Investment</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="history-data"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="buttons comp-info-container-margin">
+          <form>
+            <input type="number" class="quantity" value="1" min="1" />
+            <button id="buy-stocks">Buy</button>
+            <button id="sell-stocks">Sell</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/variables.js"></script>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
