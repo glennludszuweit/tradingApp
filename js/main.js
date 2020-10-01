@@ -53,5 +53,7 @@ sellStocks.addEventListener('click', (e) => {
 
 overview.addEventListener('click', (e) => {
   e.preventDefault();
+  /////remove highligh from list when searching stocks
+  lib.removeHighlight();
   homeView();
 });

@@ -85,7 +85,7 @@ async function chart() {
   let ctx = document.getElementById('myChart').getContext('2d');
   if (myChart != undefined) myChart.destroy();
   myChart = new Chart(ctx, {
-    type: chartType,
+    type: 'bar',
     data: {
       labels: [''],
       datasets: [

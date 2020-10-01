@@ -18,12 +18,7 @@ export async function searchStock() {
     search.value = '';
 
     /////remove highligh from list when searching stocks
-    let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {
-      return stock.childNodes[1];
-    });
-    x.filter(Boolean).forEach((y) =>
-      y.parentElement.classList.remove('highlight')
-    );
+    lib.removeHighlight();
 
     displayTradingHistory.style.display = 'none';
     sellStocks.style.display = 'none';
