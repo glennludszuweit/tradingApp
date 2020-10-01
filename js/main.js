@@ -1,12 +1,12 @@
 import { loadTotalStocks, displayMyStocks } from './view/myStocksView.js';
 import { searchStock } from './view/stocksView.js';
-import homeView from './view/homeView.js';
+import displayHomeView from './view/homeView.js';
 import * as lib from './controller/lib.js';
 import * as LS from './controller/LSController.js';
 import * as event from './controller/eventsController.js';
 
 //home view
-homeView();
+displayHomeView.homeView();
 
 //search stocks
 searchStock();

@@ -1,4 +1,5 @@
-import homeView from '../view/homeView.js';
+import displayHomeView from '../view/homeView.js';
+import stockController from './stocksController.js';
 import * as lib from './lib.js';
 
 export function buy() {
@@ -16,15 +17,13 @@ export function buy() {
 export function sell() {
   sellStocks.addEventListener('click', (e) => {
     e.preventDefault();
-    // lib.totalQuantity(companySymbol[0]);
     quantity = -quantityInput.value;
 
-    if (-quantity <= lib.totalQuantity(companySymbol[0])) {
+    if (-quantity <= stockController.totalQuantity(companySymbol[0])) {
       lib.openConfirmModal();
     } else {
       lib.openAlert();
     }
-    console.log(lib.totalQuantity(companySymbol[0]));
   });
 }
 
@@ -33,7 +32,7 @@ export function portfolioOverview() {
     e.preventDefault();
     /////remove highligh from list when searching stocks
     // lib.removeHighlight();
-    homeView();
+    displayHomeView.homeView();
   });
 }
 

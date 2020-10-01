@@ -1,5 +1,5 @@
+import stockController from './stocksController.js';
 import * as lib from './lib.js';
-import MyStocks from '../model/MyStocks.js';
 
 const displayCash = document.querySelector('.cash');
 const displayBalance = document.querySelector('.balance');
@@ -7,24 +7,32 @@ let localStorageStocks = [];
 let balance = [];
 let LSValue = 0;
 
+export function SET(key, value) {
+  return localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function GET(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
 export function setLocalStorage() {
   //set stocks
   setLocalStorageStocks();
   // calculate cash
   setLocalStorageCash();
-  displayCash.innerText = `$${lib.GET('cash').toFixed(2)}`;
+  displayCash.innerText = `$${GET('cash').toFixed(2)}`;
   //calculate balance
   setLocalStorageBalance();
-  displayBalance.innerText = `$${lib.GET('balance').toFixed(2)}`;
+  displayBalance.innerText = `$${GET('balance').toFixed(2)}`;
 }
 
 function setLocalStorageStocks() {
   let obj = {};
 
-  if (lib.GET('stocks') === null) {
+  if (GET('stocks') === null) {
     localStorageStocks = [];
   } else {
-    localStorageStocks = lib.GET('stocks');
+    localStorageStocks = GET('stocks');
   }
 
   obj.symbol = companySymbol[0];
@@ -35,24 +43,24 @@ function setLocalStorageStocks() {
 
   LSValue = obj.value;
   localStorageStocks.push(obj);
-  lib.SET('stocks', localStorageStocks);
+  SET('stocks', localStorageStocks);
 }
 
 export function setLocalStorageCash() {
-  if (lib.GET('cash') === null) {
-    lib.SET('cash', (cash = 1000000));
+  if (GET('cash') === null) {
+    SET('cash', (cash = 1000000));
   } else {
-    cash = lib.GET('cash') - LSValue;
+    cash = GET('cash') - LSValue;
   }
 
-  lib.SET('cash', cash);
+  SET('cash', cash);
 }
 
 export async function setLocalStorageBalance() {
-  if (lib.GET('balance') === null) {
-    lib.SET('balance', (balance = 1000000));
+  if (GET('balance') === null) {
+    SET('balance', (balance = 1000000));
   } else {
-    let total = await lib.calculateStocksValue();
+    let total = await stockController.calculateStocksValue();
     balance = lib.GET('cash') + total;
   }
 

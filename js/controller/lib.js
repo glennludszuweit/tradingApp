@@ -61,47 +61,6 @@ export function closeAlert() {
   });
 }
 
-export function totalQuantity(symbol) {
-  return GET('stocks').reduce(
-    (acc, stock) => (symbol === stock.symbol ? acc + stock.quantity : acc),
-    0
-  );
-}
-
-export function calculateInvestments() {
-  let stocks = GET('stocks');
-  if (stocks) {
-    let total = stocks.reduce((acc, stock) => acc + stock.value, 0);
-    return total;
-  } else {
-    return;
-  }
-}
-
-export async function calculateStockLatestValue() {
-  let x = GET('stocks').map(async (stock) => {
-    let list = new MyStocks(
-      stock.symbol,
-      dataResolution,
-      stock.quantity,
-      stock.price,
-      stock.value
-    );
-    let data = await list.companyStockQoutes();
-    return data.c * stock.quantity;
-  });
-  return x;
-}
-
-export async function calculateStocksValue() {
-  let x = await calculateStockLatestValue();
-  let values = await Promise.all(x);
-  let total = values.reduce((acc, val) => {
-    return acc + val;
-  });
-  return total;
-}
-
 export function removeHighlight() {
   let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {
     return stock.childNodes[1];
