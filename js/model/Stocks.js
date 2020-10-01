@@ -1,14 +1,20 @@
-const Cache = {
-  URL: { date: Date.now(), data: { c: 123 } },
-};
+const Cache = {};
+const Waiting = {};
 
 const cachedFetch = async (url) => {
   let data;
   let older = Date.now() - 5000;
-  if (!Cache[url] || Cache[url].date < older) {
+  if (Waiting[url]) {
+    return new Promise((resolve) => {
+      Waiting[url].push(resolve);
+    });
+  } else if (!Cache[url] || Cache[url].date < older) {
+    Waiting[url] = [];
     const res = await fetch(url);
     data = await res.json();
     Cache[url] = { date: Date.now(), data };
+    Waiting[url].forEach((resolve) => resolve(data));
+    delete Waiting[url];
     return data;
   } else {
     return Cache[url].data;

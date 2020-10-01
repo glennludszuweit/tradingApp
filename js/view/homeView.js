@@ -9,6 +9,7 @@ export default async function homeView() {
   buyStocks.style.display = 'none';
   sellStocks.style.display = 'none';
   quantityInput.style.display = 'none';
+  displayTradingHistory.style.display = '';
 }
 
 async function displayMyData() {
