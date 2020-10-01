@@ -10,37 +10,6 @@
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js
     "></script>
-    <style>
-      .alert {
-        width: 500px;
-        background-color: #222428;
-        color: #fff;
-        font-size: 20px;
-        border: 1px solid #f64e3b;
-        position: absolute;
-        left: 50%;
-        top: 30%;
-        transform: translate(-50%, -50%);
-        z-index: 100;
-        display: none;
-      }
-      .alert .alert-message {
-        padding: 20px;
-        text-align: center;
-      }
-      .alert .close {
-        padding: 0 5px;
-        text-align: right;
-        position: absolute;
-        top: 0;
-        right: 0;
-        cursor: pointer;
-        background-color: #f64e3b;
-      }
-      .alert .close:hover {
-        background-color: #090d16;
-      }
-    </style>
   </head>
   <body>
     <!-- confirm modal -->
@@ -67,6 +36,9 @@
         </div>
         <div class="menu-items">
           <div class="item overview">Overview</div>
+        </div>
+        <div class="reset-data">
+          <button class="reset">Reset</button>
         </div>
       </div>
 
@@ -103,19 +75,21 @@
 
           <div class="history">
             <h1>Trading History</h1>
-            <table class="zebra">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total Investment</th>
-                  <th>Date</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody class="history-data"></tbody>
-            </table>
+            <div class="table-scroll">
+              <table class="zebra">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Investment</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="history-data"></tbody>
+              </table>
+            </div>
           </div>
         </div>
 

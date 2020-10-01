@@ -38,6 +38,36 @@ a:visited {
   color: inherit;
 }
 
+.alert {
+  width: 500px;
+  background-color: #222428;
+  color: #fff;
+  font-size: 20px;
+  border: 1px solid #f64e3b;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: none;
+}
+.alert .alert-message {
+  padding: 20px;
+  text-align: center;
+}
+.alert .close {
+  padding: 0 5px;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #f64e3b;
+}
+.alert .close:hover {
+  background-color: #090d16;
+}
+
 .modal {
   width: 500px;
   height: 250px;
@@ -151,6 +181,20 @@ a:visited {
 }
 .nav .menu-items .item:hover {
   transform: scale(1.2);
+}
+.reset-data {
+  display: flex;
+  justify-content: center;
+}
+
+.reset-data .reset {
+  background-color: #f64e3b;
+  border: none;
+  color: #fff;
+  padding: 10px 50px;
+  font-size: 18px;
+  margin-top: 50px;
+  cursor: pointer;
 }
 .companies {
   background: #222428;

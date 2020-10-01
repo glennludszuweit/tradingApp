@@ -1,4 +1,4 @@
-import * as LS from './localStorage.js';
+import * as LS from './LSController.js';
 import MyStocks from '../model/MyStocks.js';
 
 const container = document.querySelector('.container');

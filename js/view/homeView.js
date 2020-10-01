@@ -52,7 +52,8 @@ async function displayMyData() {
 
 function tradingHistory() {
   const historyData = document.querySelector('.history-data');
-  let output = lib.GET('stocks').map((stock) => {
+  let stocks = lib.GET('stocks').sort((a, b) => b.date - a.date);
+  let output = stocks.map((stock) => {
     if (stock.quantity < 0) {
       return `
         <tr>
@@ -112,7 +113,7 @@ async function chart() {
         yAxes: [
           {
             ticks: {
-              beginAtZero: true,
+              beginAtZero: false,
             },
           },
         ],

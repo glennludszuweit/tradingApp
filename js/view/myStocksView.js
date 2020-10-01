@@ -42,6 +42,7 @@ export function displayMyStocks() {
 
     await loadStockInfo();
     displayMyStockData();
+    await loadTotalStocks();
 
     chartIt(timesStamps, highPrices, lowPrices);
 
