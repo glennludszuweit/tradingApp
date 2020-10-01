@@ -277,7 +277,7 @@ a:visited {
 }
 .company-info .basic-info .price-big {
   font-weight: 300;
-  font-size: 50px;
+  font-size: 40px;
 }
 .company-info .basic-info .search-price-details {
   display: flex;
@@ -324,6 +324,33 @@ a:visited {
 }
 .company-info .data-chart {
   margin: 50px;
+}
+.company-info .data-chart .history {
+  height: 600px;
+  overflow-y: scroll;
+  margin: 25px 0 0;
+}
+.company-info .data-chart .history h1 {
+  color: #46cf9a;
+  font-weight: 500;
+  margin: 15px 0 10px;
+}
+.company-info .data-chart .history table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.company-info .data-chart .history table thead th {
+  font-size: 18px;
+  font-weight: 400;
+}
+.company-info .data-chart .history table th,
+.company-info .data-chart .history table td {
+  padding: 1rem;
+  max-height: 25px;
+  text-align: left;
+}
+.company-info .data-chart .history table tbody tr:nth-child(odd) {
+  background: #222428;
 }
 .company-info .buttons {
   text-align: right;

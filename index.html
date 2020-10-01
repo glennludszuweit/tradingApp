@@ -10,60 +10,6 @@
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js
     "></script>
-
-    <style>
-      /* HISTORY */
-
-      .history {
-        height: 600px;
-        overflow-y: scroll;
-      }
-      .history h1 {
-        color: #46cf9a;
-        font-weight: 500;
-        margin-bottom: 5px;
-      }
-      .history table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      .history table thead th {
-        font-size: 18px;
-        font-weight: 400;
-      }
-      .history table th,
-      .history table td {
-        padding: 1rem;
-        max-height: 25px;
-        text-align: left;
-      }
-      .history table tbody tr:nth-child(odd) {
-        background: #222428;
-      }
-      /* NEWS */
-      .trading-news h1 {
-        color: #46cf9a;
-        font-weight: 500;
-        margin-bottom: 5px;
-      }
-      .stocks-news {
-        height: 600px;
-        overflow-y: scroll;
-      }
-
-      .stocks-news .news-container {
-        display: flex;
-        width: 90%;
-        margin: 0 auto;
-        padding: 20px 0;
-      }
-
-      .stocks-news .news-container .news-img img {
-        width: 200px;
-        height: 100px;
-        object-fit: cover;
-      }
-    </style>
   </head>
   <body>
     <!-- confirm modal -->
@@ -133,7 +79,7 @@
         </div> -->
 
         <div class="data-chart comp-info-container-margin">
-          <canvas id="myChart" height="150"></canvas>
+          <canvas id="myChart" height="120"></canvas>
 
           <div class="history">
             <h1>Trading History</h1>
@@ -150,13 +96,6 @@
               <tbody class="history-data"></tbody>
             </table>
           </div>
-
-          <!-- <hr /> -->
-
-          <!-- <div class="trading-news">
-            <h1>Stocks News</h1>
-            <div class="stocks-news"></div>
-          </div> -->
         </div>
 
         <hr />

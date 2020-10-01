@@ -1,5 +1,5 @@
 export default class Stocks {
-  key = 'btfnh1748v6rl6gbnml0';
+  key = 'btqofvf48v6oqq03kajg';
   dateFrom = moment().subtract('months', 3).unix();
   dateTo = moment().unix();
 

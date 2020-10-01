@@ -17,13 +17,6 @@ export async function searchStock() {
 
     search.value = '';
 
-    sellStocks.style.display = 'none';
-    buyStocks.style.display = '';
-    quantityInput.style.display = '';
-    chartCanvas.style.display = '';
-    displayNews.style.display = 'none';
-    displayTradingHistory.style.display = 'none';
-
     /////remove highligh from list when searching stocks
     let x = Array.from(displayPortfolioStocks.childNodes).map((stock) => {
       return stock.childNodes[1];
@@ -31,6 +24,12 @@ export async function searchStock() {
     x.filter(Boolean).forEach((y) =>
       y.parentElement.classList.remove('highlight')
     );
+
+    displayTradingHistory.style.display = 'none';
+    sellStocks.style.display = 'none';
+    buyStocks.style.display = '';
+    quantityInput.style.display = '';
+    chartCanvas.style.display = '';
   });
 }
 

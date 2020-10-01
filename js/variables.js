@@ -7,7 +7,7 @@ const quantityInput = document.querySelector('.quantity');
 
 const displayNews = document.querySelector('.trading-news');
 const displayTradingHistory = document.querySelector('.history');
-const chartCanvas = document.querySelector('canvas');
+const chartCanvas = document.querySelector('.myChart');
 
 let chartType = 'bar';
 let myChart;
@@ -22,7 +22,5 @@ let dataResolution = 'D';
 
 let quantity = 1;
 let cash = [];
-let chartStocksValue = [];
-let chartInvestmentValue = [];
 
 let xyz = [];

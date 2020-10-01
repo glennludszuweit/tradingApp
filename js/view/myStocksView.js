@@ -8,7 +8,6 @@ let stocks = lib.GET('stocks');
 let symbol;
 let quantity;
 let price;
-let value;
 
 async function loadStockInfo() {
   const myStock = new MyStocks(symbol, dataResolution, quantity, price);
@@ -46,12 +45,11 @@ export function displayMyStocks() {
 
     chart(timesStamps, highPrices, lowPrices);
 
+    displayTradingHistory.style.display = 'none';
     buyStocks.style.display = '';
     sellStocks.style.display = '';
     quantityInput.style.display = '';
     chartCanvas.style.display = '';
-    displayNews.style.display = 'none';
-    displayTradingHistory.style.display = 'none';
   });
 }
 
@@ -78,7 +76,6 @@ export async function loadTotalStocks() {
       if (stock.quantity <= 0) {
         return;
       } else {
-        value = stock.value;
         const data = await stock.companyStockQoutes();
         return `
             <div class="company-overview">
@@ -88,11 +85,14 @@ export async function loadTotalStocks() {
                   stock.quantity
                 }</small></p>
               </div>
-              <div class="mini-graph"></div>
+              <input type="hidden" value="">
+              <div style="z-index: -100">${stock.value}
+              </div>
               <div class="price stock-status">$ ${(
                 stock.quantity * data.c -
                 stock.value
-              ).toFixed(2)}</div>
+              ).toFixed(2)}
+              </div>
             </div>
           `;
       }
@@ -148,7 +148,7 @@ function displayMyStockData() {
       <div class="price-details">
         <div class="price-details_shares">
           <small class="comp-name-small">Money Spent</small>
-          <h4 class="comp-symbol">$ ${value.toFixed(2)}</h4>
+          <h4 class="comp-symbol">$ ${price}</h4>
         </div>
       </div>
     </div>

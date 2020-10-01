@@ -1,7 +1,6 @@
 import * as lib from '../controller/lib.js';
 
 export default async function homeView() {
-  // await fetchStocksNews();
   displayMyData();
   tradingHistory();
   chart();
@@ -10,43 +9,33 @@ export default async function homeView() {
   buyStocks.style.display = 'none';
   sellStocks.style.display = 'none';
   quantityInput.style.display = 'none';
-  // chartCanvas.style.display = 'none';
 }
-
-// async function fetchStocksNews() {
-//   let url =
-//     'https://finnhub.io/api/v1/news?category=general&token=btj770748v6p9f1q3i30';
-//   let response = await fetch(url);
-//   let data = await response.json();
-
-//   return data;
-// }
 
 async function displayMyData() {
   basicInfo.innerHTML = `
   <div class="search-stock-info">
     <div>
       <small>Total Stocks</small>
-      <div class="price-big" style="font-size: 40px">${lib.newSymbolArr()}</div>
+      <div class="price-big">${lib.newSymbolArr()}</div>
     </div>
 
     <div>
       <small>Stocks Value</small>
-      <div class="price-big stockValue" style="font-size: 40px">$ ${(
+      <div class="price-big stockValue">$ ${(
         await lib.calculateStocksValue()
       ).toFixed(2)}</div>
     </div>
 
     <div>
       <small>Investments</small>
-      <div class="price-big investmentsValue" style="font-size: 40px">$ ${lib
+      <div class="price-big investmentsValue">$ ${lib
         .calculateInvestments()
         .toFixed(2)}</div>
     </div>
 
     <div>
       <small>Earnings</small>
-      <div class="price-big earnings" style="font-size: 40px">$ ${(
+      <div class="price-big earnings">$ ${(
         (await lib.calculateStocksValue()) - lib.calculateInvestments()
       ).toFixed(2)}</div>
     </div>
@@ -63,35 +52,6 @@ async function displayMyData() {
     earnings.style.color = '#46cf9a';
   }
 }
-
-// async function stocksNews() {
-//   const newsData = document.querySelector('.stocks-news');
-//   let data = await fetchStocksNews();
-
-//   let output = data.map((news) => {
-//     return `
-//         <div class="news-container">
-//         <div class="news-img">
-//           <img src="${news.image}" alt="${news.headline}"/>
-//         </div>
-//         <div class="news-body">
-//           <h4 class="headline">${news.headline}</h4>
-//           <small class="date">${moment
-//             .unix(news.datetime)
-//             .format('DD/MM/YYYY')} <span class="category">${
-//       news.category
-//     }</span> </small>
-//           <p class="summary">${news.summary}</p>
-//           <a href="${news.url}" target="_blank"><small>${
-//       news.source
-//     }</small></a>
-//         </div>
-//         </div>
-//         `;
-//   });
-
-//   newsData.innerHTML = output.slice(0, 5).join('');
-// }
 
 function tradingHistory() {
   const historyData = document.querySelector('.history-data');
@@ -114,7 +74,7 @@ function chart() {
   let ctx = document.getElementById('myChart').getContext('2d');
   if (myChart != undefined) myChart.destroy();
   myChart = new Chart(ctx, {
-    type: chartType,
+    type: 'bar',
     data: {
       labels: [''],
       datasets: [
