@@ -14,10 +14,6 @@ export default async function homeView() {
 async function displayMyData() {
   basicInfo.innerHTML = `
   <div class="search-stock-info">
-    <div>
-      <small>Total Stocks</small>
-      <div class="price-big">${lib.newSymbolArr()}</div>
-    </div>
 
     <div>
       <small>Stocks Value</small>
@@ -56,15 +52,29 @@ async function displayMyData() {
 function tradingHistory() {
   const historyData = document.querySelector('.history-data');
   let output = lib.GET('stocks').map((stock) => {
-    return `
+    if (stock.quantity < 0) {
+      return `
         <tr>
           <td>${stock.symbol}</td>
-          <td>$ ${stock.price}</td>
+          <td>$ ${stock.price.toFixed(2)}</td>
           <td>${stock.quantity}</td>
-          <td>$ ${stock.value}</td>
+          <td>$ ${stock.value.toFixed(2)}</td>
           <td>${stock.date}</td>
+          <td style="color: #fa4e3b">Sold</td>
         </tr>
     `;
+    } else {
+      return `
+        <tr>
+          <td>${stock.symbol}</td>
+          <td>$ ${stock.price.toFixed(2)}</td>
+          <td>${stock.quantity}</td>
+          <td>$ ${stock.value.toFixed(2)}</td>
+          <td>${stock.date}</td>
+          <td style="color: #46cf9a">Bought</td>
+        </tr>
+    `;
+    }
   });
 
   historyData.innerHTML = output.join('');
@@ -74,7 +84,7 @@ async function chart() {
   let ctx = document.getElementById('myChart').getContext('2d');
   if (myChart != undefined) myChart.destroy();
   myChart = new Chart(ctx, {
-    type: 'bar',
+    type: chartType,
     data: {
       labels: [''],
       datasets: [

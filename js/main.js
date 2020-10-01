@@ -22,6 +22,7 @@ LS.setLocalStorageBalance();
 LS.loadStartingMoney();
 
 //alert & modal
+lib.proceedConfirmModal();
 lib.cancelConfirmModal();
 lib.closeAlert();
 
@@ -48,4 +49,9 @@ sellStocks.addEventListener('click', (e) => {
     lib.openAlert();
   }
   console.log(lib.totalQuantity(companySymbol[0]));
+});
+
+overview.addEventListener('click', (e) => {
+  e.preventDefault();
+  homeView();
 });

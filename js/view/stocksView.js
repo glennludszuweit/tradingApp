@@ -1,6 +1,6 @@
 import Stocks from '../model/Stocks.js';
 import * as lib from '../controller/lib.js';
-import chart from './chart.js';
+import chartIt from './chart.js';
 
 const search = document.querySelector('.search');
 const submitBtn = document.querySelector('.reference');
@@ -13,7 +13,7 @@ export async function searchStock() {
 
     await loadSearchInfo();
 
-    chart(timesStamps, highPrices, lowPrices);
+    chartIt(timesStamps, highPrices, lowPrices);
 
     search.value = '';
 

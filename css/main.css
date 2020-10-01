@@ -136,41 +136,22 @@ a:visited {
   padding-bottom: 30px;
 }
 .nav .menu-items {
-  padding-top: 15px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 .nav .menu-items .item {
-  height: 45px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #7f8f9c;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
-.nav .menu-items .active {
-  color: #ffffff;
-}
-.nav .menu-items .active :hover {
-  color: #46cf9a;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  padding: 5px 10px;
+  border-bottom: 3px solid #46cf9a;
+  cursor: pointer;
 }
 .nav .menu-items .item:hover {
-  color: #ffffff;
+  transform: scale(1.2);
 }
-.nav .menu-items #portfolio {
-  display: inline-flex;
-  width: 150px;
-}
-.nav .menu-items #potrfolio-count {
-  display: inline;
-  border-radius: 2px;
-  background-color: #46cf9a;
-  padding: 5px 10px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 10px;
-}
-
 .companies {
   background: #222428;
   width: 20%;

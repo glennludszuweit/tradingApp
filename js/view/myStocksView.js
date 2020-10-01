@@ -1,6 +1,6 @@
 import * as lib from '../controller/lib.js';
 import MyStocks from '../model/MyStocks.js';
-import chart from './chart.js';
+import chartIt from './chart.js';
 
 let selectedCompany;
 
@@ -43,7 +43,7 @@ export function displayMyStocks() {
     await loadStockInfo();
     displayMyStockData();
 
-    chart(timesStamps, highPrices, lowPrices);
+    chartIt(timesStamps, highPrices, lowPrices);
 
     displayTradingHistory.style.display = 'none';
     buyStocks.style.display = '';

@@ -68,11 +68,6 @@ export function totalQuantity(symbol) {
   );
 }
 
-export function newSymbolArr() {
-  let newArr = GET('stocks').map((stock) => stock.symbol);
-  return [...new Set(newArr)].length;
-}
-
 export function calculateInvestments() {
   let stocks = GET('stocks');
   if (stocks) {

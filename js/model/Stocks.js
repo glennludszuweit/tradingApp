@@ -1,3 +1,20 @@
+const Cache = {
+  URL: { date: Date.now(), data: { c: 123 } },
+};
+
+const cachedFetch = async (url) => {
+  let data;
+  let older = Date.now() - 5000;
+  if (!Cache[url] || Cache[url].date < older) {
+    const res = await fetch(url);
+    data = await res.json();
+    Cache[url] = { date: Date.now(), data };
+    return data;
+  } else {
+    return Cache[url].data;
+  }
+};
+
 export default class Stocks {
   key = 'btqofvf48v6oqq03kajg';
   dateFrom = moment().subtract('months', 3).unix();
@@ -14,8 +31,7 @@ export default class Stocks {
         this.key
       }`;
 
-      const res = await fetch(url);
-      const data = await res.json();
+      const data = await cachedFetch(url);
 
       companyName.push(data.name);
       companySymbol.push(data.ticker);
@@ -31,8 +47,7 @@ export default class Stocks {
         this.key
       }`;
 
-      const res = await fetch(url);
-      const data = await res.json();
+      const data = await cachedFetch(url);
 
       currentPrice.push(data.c);
       return data;
@@ -47,8 +62,7 @@ export default class Stocks {
         this.dateFrom
       }&to=${this.dateTo}&token=${this.key}`;
 
-      const res = await fetch(url);
-      const data = await res.json();
+      const data = await cachedFetch(url);
 
       data.t.forEach((timestamp) => {
         timesStamps.push(new Date(timestamp * 1000).toDateString().slice(4));
