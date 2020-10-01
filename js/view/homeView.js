@@ -1,9 +1,8 @@
 import stockController from '../controller/stocksController.js';
-
-import * as lib from '../controller/lib.js';
+import LS from '../controller/lsController.js';
 
 class Home {
-  homeView() {
+  displayHomeView() {
     this.displayMyData();
     this.tradingHistory();
     this.chart();
@@ -53,7 +52,7 @@ class Home {
 
   tradingHistory() {
     const historyData = document.querySelector('.history-data');
-    let stocks = lib.GET('stocks').sort((a, b) => b.date - a.date);
+    let stocks = LS.GET('stocks').sort((a, b) => b.date - a.date);
     let output = stocks.map((stock) => {
       if (stock.quantity < 0) {
         return `

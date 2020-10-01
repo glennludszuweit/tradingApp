@@ -1,5 +1,5 @@
 import MyStock from '../model/MyStocks.js';
-import * as LS from './lib.js';
+import LS from './lsController.js';
 
 class StocksController {
   totalQuantity(symbol) {

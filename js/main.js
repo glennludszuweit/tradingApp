@@ -1,12 +1,12 @@
 import { loadTotalStocks, displayMyStocks } from './view/myStocksView.js';
 import { searchStock } from './view/stocksView.js';
-import displayHomeView from './view/homeView.js';
+import homeView from './view/homeView.js';
 import * as lib from './controller/lib.js';
-import * as LS from './controller/LSController.js';
-import * as event from './controller/eventsController.js';
+import LS from './controller/lsController.js';
+import eventController from './controller/eventsController.js';
 
 //home view
-displayHomeView.homeView();
+homeView.displayHomeView();
 
 //search stocks
 searchStock();
@@ -26,10 +26,10 @@ lib.cancelConfirmModal();
 lib.closeAlert();
 
 // Buy Stocks
-event.buy();
+eventController.buy();
 // Sell Stocks
-event.sell();
+eventController.sell();
 // portfolio overview
-event.portfolioOverview();
+eventController.portfolioOverview();
 // reset localStorage
-event.reset();
+eventController.reset();

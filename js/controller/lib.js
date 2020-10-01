@@ -1,4 +1,4 @@
-import * as LS from './LSController.js';
+import * as LS from './lsController.js';
 import MyStocks from '../model/MyStocks.js';
 
 const container = document.querySelector('.container');
@@ -15,14 +15,6 @@ export function removeData() {
   lowPrices = [];
   companyName = [];
   companySymbol = [];
-}
-
-export function SET(key, value) {
-  return localStorage.setItem(key, JSON.stringify(value));
-}
-
-export function GET(key) {
-  return JSON.parse(localStorage.getItem(key));
 }
 
 export function openConfirmModal() {

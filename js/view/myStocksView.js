@@ -1,10 +1,11 @@
 import * as lib from '../controller/lib.js';
+import LS from '../controller/lsController.js';
 import MyStocks from '../model/MyStocks.js';
 import chartIt from './chart.js';
 
 let selectedCompany;
 
-let stocks = lib.GET('stocks');
+let stocks = LS.GET('stocks');
 let symbol;
 let quantity;
 let price;
