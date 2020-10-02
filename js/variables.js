@@ -13,9 +13,6 @@ const displayNews = document.querySelector('.trading-news');
 const displayTradingHistory = document.querySelector('.history');
 const chartCanvas = document.querySelector('.myChart');
 
-let chartType = 'bar';
-let myChart;
-
 let timesStamps = [];
 let currentPrice = [];
 let highPrices = [];

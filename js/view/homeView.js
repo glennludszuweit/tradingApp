@@ -1,6 +1,6 @@
 import stockController from '../controller/stocksController.js';
 import LS from '../controller/lsController.js';
-import chart from './chart.js';
+import { chart, selectChart } from './chart.js';
 
 class HomeView {
   async displayHomeView() {
@@ -9,7 +9,7 @@ class HomeView {
     // display trading history
     this.tradingHistory();
     // display to chart
-    chart(
+    this.displayToChart(
       [''],
       [(await stockController.calculateStocksValue()).toFixed(2)],
       [stockController.calculateInvestments().toFixed(2)]
@@ -54,6 +54,11 @@ class HomeView {
     } else {
       earnings.style.color = '#46cf9a';
     }
+  }
+
+  displayToChart(label, data1, data2) {
+    chart(label, data1, data2);
+    selectChart(label, data1, data2);
   }
 
   tradingHistory() {

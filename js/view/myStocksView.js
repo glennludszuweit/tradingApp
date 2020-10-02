@@ -1,7 +1,7 @@
 import UI from '../controller/uiController.js';
 import LS from '../controller/lsController.js';
 import MyStocks from '../model/MyStocks.js';
-import chart from './chart.js';
+import { chart, selectChart } from './chart.js';
 
 let selectedCompany;
 let stocks = LS.GET('stocks');
@@ -37,7 +37,7 @@ class MyStocksView {
       // display stocks info
       this.displayMyStockData();
       // display to chart
-      chart(timesStamps, highPrices, lowPrices);
+      this.displayToChart(timesStamps, highPrices, lowPrices);
       // clear unwanted display
       this.clear();
     });
@@ -48,6 +48,11 @@ class MyStocksView {
     await myStock.companyStockCandles();
     await myStock.companyStockQoutes();
     await myStock.companyInfo();
+  }
+
+  displayToChart(label, data1, data2) {
+    chart(label, data1, data2);
+    selectChart(label, data1, data2);
   }
 
   async loadTotalStocks() {

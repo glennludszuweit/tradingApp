@@ -65,13 +65,26 @@
 
         <hr />
 
-        <!-- <div class="chart-container comp-info-container-margin">
-          <button class="chart-type" onclick="lineChart()">line</button>
-          <button class="chart-type" onclick="barChart()">bar</button>
-        </div> -->
+        <div class="chart-container comp-info-container-margin">
+          <button class="chart-type">line</button>
+          <button class="chart-type">bar</button>
+        </div>
 
         <div class="data-chart comp-info-container-margin">
           <canvas id="myChart" height="120"></canvas>
+
+          <br /><br />
+          <div class="resolution-picker">
+            <button class="resolution" onclick="changeChartResolution('D')">
+              Daily
+            </button>
+            <button class="resolution" onclick="changeChartResolution('W')">
+              Weekly
+            </button>
+            <button class="resolution" onclick="changeChartResolution('M')">
+              Monthly
+            </button>
+          </div>
 
           <div class="history">
             <h1>Trading History</h1>

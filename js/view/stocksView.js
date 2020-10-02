@@ -1,6 +1,6 @@
 import Stocks from '../model/Stocks.js';
 import UI from '../controller/uiController.js';
-import chart from './chart.js';
+import { chart, selectChart } from './chart.js';
 
 class StocksView {
   async searchStock() {
@@ -13,7 +13,7 @@ class StocksView {
       // display data
       this.displaySearchStockData();
       // display to chart
-      chart(timesStamps, highPrices, lowPrices);
+      this.displayToChart(timesStamps, highPrices, lowPrices);
       /////remove highligh from list when searching stocks
       UI.removeHighlight();
       this.clear();
@@ -25,6 +25,11 @@ class StocksView {
     await stock.companyStockCandles();
     await stock.companyInfo();
     await stock.companyStockQoutes();
+  }
+
+  displayToChart(label, data1, data2) {
+    chart(label, data1, data2);
+    selectChart(label, data1, data2);
   }
 
   displaySearchStockData() {
